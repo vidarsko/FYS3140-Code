@@ -15,8 +15,8 @@ if nargin<4
 end
 
 if nargin<6
-   xRes = 201;
-   yRes = 201;
+   xRes = 401;
+   yRes = 401;
 end
 
 sys.x = linspace(xmin,xmax,xRes);
