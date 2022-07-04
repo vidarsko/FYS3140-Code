@@ -53,10 +53,10 @@ if not(dont_plot)
    figure
    plot_function(sys,f); 
    hold on
-   plot3(sys.X(y0i-dyi,x0i-dxi:x0i+dxi),sys.Y(y0i-dyi,x0i-dxi:x0i+dxi),abs(f(y0i-dyi,x0i-dxi:x0i+dxi)),'r--','LineWidth',2);
-   plot3(sys.X(y0i-dyi:y0i+dyi,x0i+dxi),sys.Y(y0i-dyi:y0i+dyi,x0i+dxi),abs(f(y0i-dyi:y0i+dyi,x0i+dxi)),'r--','LineWidth',2);
-   plot3(sys.X(y0i+dyi,x0i-dxi:x0i+dxi),sys.Y(y0i+dyi,x0i-dxi:x0i+dxi),abs(f(y0i+dyi,x0i-dxi:x0i+dxi)),'r--','LineWidth',2);
-   plot3(sys.X(y0i-dyi:y0i+dyi,x0i-dxi),sys.Y(y0i-dyi:y0i+dyi,x0i-dxi),abs(f(y0i-dyi:y0i+dyi,x0i-dxi)),'r--','LineWidth',2);
+   plot3(sys.X(y0i-dyi,x0i-dxi:x0i+dxi),sys.Y(y0i-dyi,x0i-dxi:x0i+dxi),abs(f(y0i-dyi,x0i-dxi:x0i+dxi)),'k--','LineWidth',2);
+   plot3(sys.X(y0i-dyi:y0i+dyi,x0i+dxi),sys.Y(y0i-dyi:y0i+dyi,x0i+dxi),abs(f(y0i-dyi:y0i+dyi,x0i+dxi)),'k--','LineWidth',2);
+   plot3(sys.X(y0i+dyi,x0i-dxi:x0i+dxi),sys.Y(y0i+dyi,x0i-dxi:x0i+dxi),abs(f(y0i+dyi,x0i-dxi:x0i+dxi)),'k--','LineWidth',2);
+   plot3(sys.X(y0i-dyi:y0i+dyi,x0i-dxi),sys.Y(y0i-dyi:y0i+dyi,x0i-dxi),abs(f(y0i-dyi:y0i+dyi,x0i-dxi)),'k--','LineWidth',2);
        
 end
 

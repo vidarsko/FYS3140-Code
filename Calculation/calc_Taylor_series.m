@@ -16,7 +16,7 @@ expr = strrep(expr,'z','sys.z');
 
 f = 0;
 for n=nmin:nmax
-   f = f+eval(expr).*z.^n;
+   f = f+eval(expr).*sys.z.^n;
 end
 
 f(abs(f)>10)=nan;
