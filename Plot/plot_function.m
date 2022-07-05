@@ -3,33 +3,59 @@ function  plot_function(sys,f)
 %   Detailed explanation goes here
 
 if strcmp(sys.type,'C2C')
-    
+
     if isreal(f)
         surf(sys.X,sys.Y,f); shading interp
         colorbar
     else
+
+%         norm = abs(f);
+%         
+%         f(norm.^2>1e1)=nan;
+% 
         
-        f_abs =  abs(f);
-        f_ang = angle(f);
-        
+%         theta = angle(f);
+% 
+%         
+% 
+%         dcolor(sys.x,sys.y,rho.*exp(1i*theta));
+%         set(gca,'Color','w')
+
+        sanePColor(sys.x,sys.y,angle(f));
         %     f_abs(f_abs>100)=nan;
-        
-        surf(sys.X,sys.Y,f_abs,f_ang); shading flat;
+        rho = abs(f);
+        rho(isinf(rho))=1e3;
+        %         max_rho = max(rho(:));
+
+        mean_rho = mean(rho(:));
+
+        poles = regionprops(rho>5*mean_rho, 'centroid');
+        centroids = cat(1,poles.Centroid);
+        hold on
+        for n=1:size(centroids,1)
+            plot(centroids(n,1)*sys.dx+sys.xmin,centroids(n,2)*sys.dy+sys.ymin,'ko','MarkerFaceColor','w');
+        end
+
+        zeros_of_f = regionprops(rho<0.05, 'centroid');
+        centroids = cat(1,zeros_of_f.Centroid);
+        hold on
+        for n=1:size(centroids,1)
+            plot(centroids(n,1)*sys.dx+sys.xmin,centroids(n,2)*sys.dy+sys.ymin,'ko','MarkerFaceColor','k');
+        end
+
         colormap(circshift(hsv,128))
         colorbar('XTickLabel',{'-\pi','-\pi/2','0','\pi/2','\pi'},'XTick', [-pi,-pi/2,0,pi/2,pi])
         caxis([-pi,pi])
-        
-        view(2)
-        
-        set(gca, 'ZScale', 'log')
-        patch([sys.xmax sys.xmin sys.xmin sys.xmax], [sys.ymax sys.ymax sys.ymin sys.ymin], [0 0 0 0], [0 0 0 0],...
-            'FaceColor','black','FaceAlpha',0.2) ;
+
+       
     end
-    
+
     xlim([sys.xmin,sys.xmax])
     ylim([sys.ymin,sys.ymax])
-    xlabel('x')
-    ylabel('y')
+    xlabel('$\Re(z)$','Interpreter','latex')
+    ylabel('$\Im(z)$','Interpreter','latex')
+    
+
 else
     error('Function not configured for this system')
 end

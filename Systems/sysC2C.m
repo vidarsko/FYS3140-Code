@@ -2,7 +2,7 @@ function sys = sysC2C(xmin,xmax,ymin,ymax,xRes,yRes)
 %SYSC2C Summary of this function goes here
 %   Detailed explanation goes here
 
-sys.type = 'C2C'
+sys.type = 'C2C';
 
 if nargin<2
    xmin=-2; 
